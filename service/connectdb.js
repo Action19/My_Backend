@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 module.exports =  function () {
     try {
         mongoose.set('strictQuery', false);
-        mongoose.connect('mongodb+srv://admin:<db_password>@19-maktab.3dnrvyu.mongodb.net/?retryWrites=true&w=majority&appName=19-maktab');
+        mongoose.connect('mongodb+srv://admin:dYLGNwq2xu8W5F2W@19-maktab.3dnrvyu.mongodb.net/?retryWrites=true&w=majority&appName=19-maktab');
         console.log('Mongo connected');
     }
     catch (error) {
@@ -12,5 +12,5 @@ module.exports =  function () {
 }
 
 
-// S9xnnh1ILVJfhv5d
-// mongodb+srv://admin:OHsemcB1mBK7fGjL@19-maktab.cyplx94.mongodb.net/?retryWrites=true&w=majority
+// dYLGNwq2xu8W5F2W
+// mongodb+srv://admin:dYLGNwq2xu8W5F2W@19-maktab.3dnrvyu.mongodb.net/?retryWrites=true&w=majority&appName=19-maktab
