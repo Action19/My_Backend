@@ -10,13 +10,25 @@ const ratingsRoutes = require('./routes/ratingRoutes');
 const schoolRoutes = require('./routes/schoolRoutes');
 const giftRoutes = require('./routes/giftsRoute');
 
-
+const allowedOrigins = [
+    "https://simulate-94cp0c8wv-simulate-team.vercel.app",
+    "http://localhost:5173" // Agar lokalda test qilsangiz
+  ];
+  
 
 const app = express();
-app.use(cors({
-    origin: "https://simulate-94cp0c8wv-simulate-team.vercel.app",
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-}));
+app.use(
+    cors({
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("CORS bloklandi"));
+        }
+      },
+      credentials: true, // Agar cookie yoki auth tokenlar bo‘lsa
+    })
+  );
 
 require('./startup/prod')(app);
 
