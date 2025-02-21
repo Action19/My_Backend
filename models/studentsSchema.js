@@ -14,6 +14,10 @@ const studentsSchema = new mongoose.Schema({
         type: Map,
         of: [Number]
     },
+    ratingsumm: {type: Number}, 
+    placeGrade: {type: Number}, 
+    placeSchool: {type: Number},
+    placeDistrict: {type: Number}, 
     token: {type: String},
 }, {timestamps: true, });
 

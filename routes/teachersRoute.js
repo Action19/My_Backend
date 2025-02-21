@@ -32,11 +32,12 @@ router.post('/teachers', userName,  async (req, res) =>{
         grades: req.body.grades,
         image: req.body.image,
         login: req.body.username,
+        science: 'Informatika',
         password: '12345678',
         role: 'Teacher',
         
     });
-    teacher.token = generateJWTToken(teacher._id, teacher.role)
+    teacher.token = generateJWTToken(teacher._id, teacher.role, teacher.schoolname)
     const result = await teacher.save();
     if (result) {
         console.log("Muvaffaqiyatli saqlandi");
@@ -71,13 +72,16 @@ router.get('/teachers/:id',async (req, res) =>{
 
 router.put('/teachers/:id', async (req, res) => {
     try {
-        const token = generateJWTToken(req.params.id, req.body.role)
+        const token = generateJWTToken(req.params.id, req.body.role, req.body.schoolname)
         const teacher = await Teachers.findByIdAndUpdate(
             req.params.id, 
-            { ...req.body, token: token },
+            { ...req.body },
             { new: true }
         );
-        if (teacher) {
+      
+        teacher.token = token;
+        const result = await teacher.save();
+        if (result) {
             res.status(200).send(teacher);
         } else {
             res.status(404).send("Yangilashda hatolik");
@@ -89,14 +93,20 @@ router.put('/teachers/:id', async (req, res) => {
 });
 
 router.get('/teachers',async (req, res) =>{
+    console.log(req.body);
+    
     const data = await Teachers.find()
+    
     if(data.length !== 0){
         res.status(200).send(data) 
+           
+        
     }
     else{
         res.status(404).send("Hatolik yuz berdi")
     }
 })
+
 
 router.delete('/teachers/:id', async (req, res) =>{
     const teacher = await Teachers.findByIdAndDelete(req.params.id);

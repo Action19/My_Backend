@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 module.exports =  function () {
     try {
         mongoose.set('strictQuery', false);
-        mongoose.connect('mongodb+srv://admin:S9xnnh1ILVJfhv5d@19-maktab.3dnrvyu.mongodb.net/19-maktab?retryWrites=true&w=majority');
+        mongoose.connect('mongodb://localhost:27017/');
         console.log('Mongo connected');
     }
     catch (error) {

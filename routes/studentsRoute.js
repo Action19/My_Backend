@@ -34,7 +34,7 @@ router.post('/students', userName, async (req, res) =>{
         password: '12345678',
         role: 'Student',
     });
-    student.token = generateJWTToken(student._id, student.role)
+    student.token = generateJWTToken(student._id, student.role, student.schoolname)
     const result = await student.save();
     if (result) {
         console.log("Muvaffaqiyatli saqlandi");
@@ -55,9 +55,11 @@ router.get('/students/:id',async (req, res) =>{
         res.status(404).send("Bunday o'quvchi yo'q")
     }
 })
+
+
 router.put('/students/:id', async (req, res) => {
     try {
-        const token = generateJWTToken(req.params.id, req.body.role)
+        const token = generateJWTToken(req.params.id, req.body.role, req.body.schoolname)
         const student = await Students.findByIdAndUpdate(
             req.params.id, 
             { ...req.body, token: token },
@@ -78,11 +80,14 @@ router.get('/students',async (req, res) =>{
     const data = await Students.find()
     if(data.length !== 0){
         res.status(200).send(data) 
+    
     }
     else{
         res.status(404).send("Hatolik yuz berdi")
     }
 })
+
+
 
 router.delete('/students/:id', async (req, res) =>{
     const student = await Students.findByIdAndDelete(req.params.id);
