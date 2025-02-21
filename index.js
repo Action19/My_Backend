@@ -14,7 +14,7 @@ const giftRoutes = require('./routes/giftsRoute');
 
 const app = express();
 app.use(cors({
-    origin: "https://simulate-94cp0c8wv-simulate-team.vercel.app/",
+    origin: "https://simulate-94cp0c8wv-simulate-team.vercel.app",
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 }));
 
