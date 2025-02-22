@@ -34,14 +34,22 @@ require('./startup/prod')(app);
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json({limit: "2mb"}));
-app.use(usersRoutes);
-app.use(studentRoutes);
-app.use(teacherRoutes);
-app.use(gradeRoutes);
-app.use(scienceRoutes);
-app.use(schoolRoutes);
-app.use(ratingsRoutes);
-app.use(giftRoutes);
+// app.use(usersRoutes);
+// app.use(studentRoutes);
+// app.use(teacherRoutes);
+// app.use(gradeRoutes);
+// app.use(scienceRoutes);
+// app.use(schoolRoutes);
+// app.use(ratingsRoutes);
+// app.use(giftRoutes);
+
+app.use("/students", studentRoutes);
+app.use("/teachers", teacherRoutes);
+app.use("/gifts", giftRoutes);
+app.use("/grades", gradeRoutes);
+app.use("/sciences", scienceRoutes);
+app.use("/schools", schoolRoutes);
+app.use("/ratings", ratingsRoutes);
 
 
 const PORT = process.env.PORT || 5000
