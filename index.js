@@ -19,17 +19,17 @@ const allowedOrigins = [
 const app = express();
 app.use(
     cors({
-      origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error("CORS bloklandi"));
-        }
-      },
-      credentials: true, // Agar cookie yoki auth tokenlar bo‘lsa
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                console.log("Bloklangan CORS so‘rovi:", origin);
+                callback(new Error("CORS bloklandi"));
+            }
+        },
+        credentials: true,
     })
-  );
-
+);
 require('./startup/prod')(app);
 
 app.use(express.urlencoded({extended: true}))
