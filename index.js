@@ -13,7 +13,8 @@ const giftRoutes = require('./routes/giftsRoute');
 const allowedOrigins = [
     "https://simulate-94cp0c8wv-simulate-team.vercel.app",
     "http://localhost:5173", // Agar lokalda test qilsangiz
-    "https://simulateuz.vercel.app"
+    "https://simulateuz.vercel.app",
+    "https://simulateuz.netlify.app"
   ];
   
 
